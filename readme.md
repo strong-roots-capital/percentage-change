@@ -11,7 +11,6 @@
 [Code Coverage]: https://codecov.io/gh/strong-roots-capital/percentage-change/branch/master/graph/badge.svg
 [Dependencies]: https://david-dm.org/strong-roots-capital/percentage-change/status.svg
 
-
 > Binary operator of percentage-change
 
 ## Install
@@ -22,19 +21,31 @@ npm install percentage-change
 
 ## Use
 
+▸ **percentageChange**(`start`: number, `end`: number): *Maybe‹number›*
+
+*Defined in [src/percentage-change.ts:12](https://github.com/strong-roots-capital/percentage-change/blob/7eddb06/src/percentage-change.ts#L12)*
+
+Binary operator of percentage-change
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`start` | number |
+`end` | number |
+
+**Returns:** *Maybe‹number›*
+
 ```typescript
 import { percentageChange } from 'percentage-change'
-// TODO: describe usage
+
+percentageChange(100, 200)
+//=>100
+
+percentageChange(100, 75)
+//=>-25
 ```
 
 ## Documentation
 
 See [generated documentation](doc/README.md).
-
-## Related
-
-TODO
-
-## Acknowledgments
-
-TODO

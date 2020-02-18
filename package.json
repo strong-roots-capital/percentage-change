@@ -87,5 +87,8 @@
         "percentage",
         "change",
         "operator"
-    ]
+    ],
+    "dependencies": {
+        "purify-ts": "^0.14.1"
+    }
 }

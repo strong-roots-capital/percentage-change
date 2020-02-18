@@ -8,14 +8,20 @@ import { testProp, fc } from 'ava-fast-check'
 import { percentageChange } from '../../src/percentage-change'
 
 
-testProp.skip(
-    'TODO: property-test percentage-change',
+testProp(
+    'should calculate percentage-change when possible',
     [
-        // arbitraries
+        fc.float(),
+        fc.float()
     ],
     (
-        // test arguments
+        start: number,
+        end: number
     ) => {
-        // return assertion
+        const result = percentageChange(start, end)
+
+        return Number.isNaN(start) || Number.isNaN(end)
+            ? result.isNothing()
+            : result.extract() === (end - start) / start * 100
     }
 )
