@@ -1,4 +1,5 @@
 import test, { ExecutionContext } from 'ava'
+import { Nothing } from 'purify-ts/Maybe'
 
 /**
  * Unit under test
@@ -37,3 +38,24 @@ test(shouldCalculate, 100, 100, 200)
 test(shouldCalculate, -50, 100, 50)
 test(shouldCalculate, 50, 100, 150)
 test(shouldCalculate, -25, 100, 75)
+
+test('should return Nothing when start is NaN', t => {
+    t.deepEqual(
+        Nothing,
+        percentageChange(NaN, 100)
+    )
+})
+
+test('should return Nothing when end is NaN', t => {
+    t.deepEqual(
+        Nothing,
+        percentageChange(100, NaN)
+    )
+})
+
+test('should return Nothing when start=0 and end=0', t => {
+    t.is(
+        Nothing,
+        percentageChange(0, 0)
+    )
+})
