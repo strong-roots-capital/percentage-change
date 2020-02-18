@@ -39,12 +39,34 @@ Name | Type |
 ```typescript
 import { percentageChange } from 'percentage-change'
 
+/* Standard use */
 percentageChange(100, 200)
-//=>100
+//=>Just(100)
 
 percentageChange(100, 75)
-//=>-25
+//=>Just(100)
+
+/* Special cases */
+percentageChange(0, 0)
+//=>Just(0)
+
+percentageChange(0, 100)
+//=>Just(Infinity)
+
+percentageChange(100, 0)
+//=>Just(-100)
+
+percentageChange(NaN, 0)
+//=>Nothing
+
+percentageChange(0, NaN)
+//=>Nothing
 ```
+
+[Maybe] type compliant with the [fantasy-land specification].
+
+[Maybe]: https://gigobyte.github.io/purify/adts/Maybe/
+[fantasy-land specification]: https://github.com/fantasyland/fantasy-land
 
 ## Documentation
 

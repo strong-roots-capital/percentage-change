@@ -13,7 +13,11 @@ export function percentageChange(
     end: number
 ): Maybe<number> {
 
-    return Number.isNaN(start) || Number.isNaN(end) || start === 0 && end === 0
+    if (start === 0 && end === 0) {
+        return Just(0)
+    }
+
+    return Number.isNaN(start) || Number.isNaN(end)
         ? Nothing
         : Just((end - start) / start * 100)
 }

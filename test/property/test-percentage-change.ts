@@ -20,7 +20,11 @@ testProp(
     ) => {
         const result = percentageChange(start, end)
 
-        return Number.isNaN(start) || Number.isNaN(end) || start === 0 && end === 0
+        if (start === 0 && end === 0) {
+            return result.extract() === 0
+        }
+
+        return Number.isNaN(start) || Number.isNaN(end)
             ? result.isNothing()
             : result.extract() === (end - start) / start * 100
     }, {
