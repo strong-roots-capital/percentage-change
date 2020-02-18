@@ -1,6 +1,6 @@
 {
     "name": "percentage-change",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Binary operator of percentage-change",
     "main": "dist/src/percentage-change.js",
     "types": "dist/src/percentage-change.d.ts",
