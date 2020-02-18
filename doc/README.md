@@ -14,7 +14,7 @@
 
 ▸ **percentageChange**(`start`: number, `end`: number): *Maybe‹number›*
 
-*Defined in [src/percentage-change.ts:12](https://github.com/strong-roots-capital/percentage-change/blob/7eddb06/src/percentage-change.ts#L12)*
+*Defined in [src/percentage-change.ts:11](https://github.com/strong-roots-capital/percentage-change/blob/772bbb2/src/percentage-change.ts#L11)*
 
 Binary operator of percentage-change
 
@@ -33,7 +33,7 @@ ___
 
 ▸ **shouldCalculate**(`t`: ExecutionContext, `expected`: number, `start`: number, `end`: number): *void*
 
-*Defined in [test/unit/test-percentage-change.ts:10](https://github.com/strong-roots-capital/percentage-change/blob/7eddb06/test/unit/test-percentage-change.ts#L10)*
+*Defined in [test/unit/test-percentage-change.ts:11](https://github.com/strong-roots-capital/percentage-change/blob/772bbb2/test/unit/test-percentage-change.ts#L11)*
 
 **Parameters:**
 
