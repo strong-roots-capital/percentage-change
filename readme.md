@@ -44,7 +44,7 @@ percentageChange(100, 200)
 //=>Just(100)
 
 percentageChange(100, 75)
-//=>Just(100)
+//=>Just(-25)
 
 /* Special cases */
 percentageChange(0, 0)
