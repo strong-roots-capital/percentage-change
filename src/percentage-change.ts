@@ -3,7 +3,7 @@
  * Binary operator of percentage-change
  */
 
-import { Maybe, Nothing, Just } from 'purify-ts/Maybe'
+import * as O from 'fp-ts/Option'
 
 /**
  * Binary operator of percentage-change
@@ -11,13 +11,23 @@ import { Maybe, Nothing, Just } from 'purify-ts/Maybe'
 export function percentageChange(
     start: number,
     end: number
-): Maybe<number> {
+): O.Option<number> {
 
-    if (start === 0 && end === 0) {
-        return Just(0)
+    if (start === Infinity || end === Infinity) {
+        return O.none
     }
 
-    return Number.isNaN(start) || Number.isNaN(end)
-        ? Nothing
-        : Just((end - start) / start * 100)
+    if (start === -Infinity || end === -Infinity) {
+        return O.none
+    }
+
+    if (Number.isNaN(start) || Number.isNaN(end)) {
+        return O.none
+    }
+
+    if (start === 0 && end === 0) {
+        return O.some(0)
+    }
+
+    return O.some((end - start) / start * 100)
 }

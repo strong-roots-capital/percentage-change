@@ -21,9 +21,7 @@ npm install percentage-change
 
 ## Use
 
-▸ **percentageChange**(`start`: number, `end`: number): *Maybe‹number›*
-
-*Defined in [src/percentage-change.ts:12](https://github.com/strong-roots-capital/percentage-change/blob/7eddb06/src/percentage-change.ts#L12)*
+▸ **percentageChange**(`start`: number, `end`: number): *Option‹number›*
 
 Binary operator of percentage-change
 
@@ -34,38 +32,45 @@ Name | Type |
 `start` | number |
 `end` | number |
 
-**Returns:** *Maybe‹number›*
+**Returns:** *Option‹number›*
 
 ```typescript
 import { percentageChange } from 'percentage-change'
+import { some, none } from 'fp-ts/Option'
 
 /* Standard use */
 percentageChange(100, 200)
-//=>Just(100)
+//=>some(100)
 
 percentageChange(100, 75)
-//=>Just(-25)
+//=>some(-25)
 
 /* Special cases */
 percentageChange(0, 0)
-//=>Just(0)
+//=>some(0)
 
 percentageChange(0, 100)
-//=>Just(Infinity)
+//=>some(Infinity)
 
 percentageChange(100, 0)
-//=>Just(-100)
+//=>some(-100)
 
 percentageChange(NaN, 0)
-//=>Nothing
+//=>none
 
 percentageChange(0, NaN)
-//=>Nothing
+//=>none
+
+percentageChange(Infinity, 0)  // -Infinity works the same way
+//=>none
+
+percentageChange(0, Infinity)  // -Infinity works the same way
+//=>none
 ```
 
-[Maybe] type compliant with the [fantasy-land specification].
+[Option] type compliant with the [fantasy-land specification].
 
-[Maybe]: https://gigobyte.github.io/purify/adts/Maybe/
+[Option]: https://gcanti.github.io/fp-ts/modules/Option.ts.html
 [fantasy-land specification]: https://github.com/fantasyland/fantasy-land
 
 ## Documentation

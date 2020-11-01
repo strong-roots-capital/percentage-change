@@ -1,5 +1,5 @@
 import test, { ExecutionContext } from 'ava'
-import { Nothing } from 'purify-ts/Maybe'
+import * as O from 'fp-ts/Option'
 
 /**
  * Unit under test
@@ -7,17 +7,13 @@ import { Nothing } from 'purify-ts/Maybe'
 
 import { percentageChange } from '../../src/percentage-change'
 
-
 function shouldCalculate(
     t: ExecutionContext,
     expected: number,
     start: number,
     end: number
 ): void {
-    t.is(
-        expected,
-        percentageChange(start, end).extract()
-    )
+    O.fold (t.fail, value => t.is(expected, value)) (percentageChange(start, end))
 }
 
 shouldCalculate.title = function title(
@@ -29,6 +25,21 @@ shouldCalculate.title = function title(
     return `should calculate ${expected} = ${start} * ${end}`
 }
 
+function shouldReturnNone(
+    t: ExecutionContext,
+    start: number,
+    end: number
+): void {
+    O.fold (t.pass, () => t.fail()) (percentageChange(start, end))
+}
+
+shouldReturnNone.title = function title(
+    _providedTitle = '',
+    start: number,
+    end: number
+): string {
+    return `should calculate ${start} * ${end} to be 'none'`
+}
 
 /*********************************************************************
  * Test cases
@@ -42,16 +53,12 @@ test(shouldCalculate, Infinity, 0, 100)
 test(shouldCalculate, -100, 150, 0)
 test(shouldCalculate, 0, 0, 0)
 
-test('should return Nothing when start is NaN', t => {
-    t.deepEqual(
-        Nothing,
-        percentageChange(NaN, 100)
-    )
-})
-
-test('should return Nothing when end is NaN', t => {
-    t.deepEqual(
-        Nothing,
-        percentageChange(100, NaN)
-    )
-})
+test(shouldReturnNone, Infinity, Infinity)
+test(shouldReturnNone, -Infinity, Infinity)
+test(shouldReturnNone, Infinity, -Infinity)
+test(shouldReturnNone, -Infinity, -Infinity)
+test(shouldReturnNone, Infinity, 0)
+test(shouldReturnNone, NaN, 100)
+test(shouldReturnNone, 100, NaN)
+test(shouldReturnNone, NaN, 0)
+test(shouldReturnNone, 0, NaN)
