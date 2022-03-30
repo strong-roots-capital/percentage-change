@@ -8,11 +8,7 @@ import * as O from 'fp-ts/Option'
 /**
  * Binary operator of percentage-change
  */
-export function percentageChange(
-    start: number,
-    end: number
-): O.Option<number> {
-
+export function percentageChange(start: number, end: number): O.Option<number> {
     if (start === Infinity || end === Infinity) {
         return O.none
     }
@@ -29,5 +25,5 @@ export function percentageChange(
         return O.some(0)
     }
 
-    return O.some((end - start) / start * 100)
+    return O.some(((end - start) / start) * 100)
 }
