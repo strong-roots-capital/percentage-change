@@ -36,7 +36,7 @@
     "@ericcrosson/eslint-config": "3.0.0",
     "@ericcrosson/prettier-config": "1.0.0",
     "@semantic-release/git": "10.0.1",
-    "@types/node": "14.14.6",
+    "@types/node": "14.18.12",
     "@typescript-eslint/eslint-plugin": "5.15.0",
     "@typescript-eslint/parser": "5.15.0",
     "ava": "3.13.0",
