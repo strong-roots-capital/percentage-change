@@ -1,5 +1,6 @@
 import test, { ExecutionContext } from 'ava'
 import * as O from 'fp-ts/Option'
+import { pipe } from 'fp-ts/function'
 
 /**
  * Unit under test
@@ -7,39 +8,36 @@ import * as O from 'fp-ts/Option'
 
 import { percentageChange } from '../../src/percentage-change'
 
-function shouldCalculate(
-  t: ExecutionContext,
-  expected: number,
-  start: number,
-  end: number,
-): void {
-  O.fold(t.fail, (value) => t.is(expected, value))(percentageChange(start, end))
-}
+const shouldCalculate = test.macro({
+  exec(
+    t: ExecutionContext,
+    expected: number,
+    start: number,
+    end: number,
+  ): void {
+    pipe(
+      percentageChange(start, end),
+      O.fold(t.fail, (value) => t.is(expected, value)),
+    )
+  },
+  title(
+    _providedTitle = '',
+    expected: number,
+    start: number,
+    end: number,
+  ): string {
+    return `should calculate ${expected} = ${start} * ${end}`
+  },
+})
 
-shouldCalculate.title = function title(
-  _providedTitle = '',
-  expected: number,
-  start: number,
-  end: number,
-): string {
-  return `should calculate ${expected} = ${start} * ${end}`
-}
-
-function shouldReturnNone(
-  t: ExecutionContext,
-  start: number,
-  end: number,
-): void {
-  O.fold(t.pass, () => t.fail())(percentageChange(start, end))
-}
-
-shouldReturnNone.title = function title(
-  _providedTitle = '',
-  start: number,
-  end: number,
-): string {
-  return `should calculate ${start} * ${end} to be 'none'`
-}
+const shouldReturnNone = test.macro({
+  exec(t: ExecutionContext, start: number, end: number): void {
+    O.fold(t.pass, () => t.fail())(percentageChange(start, end))
+  },
+  title(_providedTitle = '', start: number, end: number): string {
+    return `should calculate ${start} * ${end} to be 'none'`
+  },
+})
 
 /*********************************************************************
  * Test cases
