@@ -1,7 +1,7 @@
 import { testProp, fc } from 'ava-fast-check'
 import * as O from 'fp-ts/Option'
 import { pipe } from 'fp-ts/function'
-import { match, when } from 'ts-pattern'
+import { match, P } from 'ts-pattern'
 
 /**
  * Library under test
@@ -51,16 +51,16 @@ testProp(
     const result = percentageChange(start, end)
 
     match({ start, end })
-      .with({ start: when(Number.isNaN) }, () =>
+      .with({ start: P.when(Number.isNaN) }, () =>
         O.fold(t.pass, () => t.fail())(result),
       )
-      .with({ end: when(Number.isNaN) }, () =>
+      .with({ end: P.when(Number.isNaN) }, () =>
         O.fold(t.pass, () => t.fail())(result),
       )
-      .with({ start: when((n) => n === Infinity || n === -Infinity) }, () =>
+      .with({ start: P.when((n) => n === Infinity || n === -Infinity) }, () =>
         O.fold(t.pass, () => t.fail())(result),
       )
-      .with({ end: when((n) => n === Infinity || n === -Infinity) }, () =>
+      .with({ end: P.when((n) => n === Infinity || n === -Infinity) }, () =>
         O.fold(t.pass, () => t.fail())(result),
       )
       .with(
