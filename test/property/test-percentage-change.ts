@@ -1,6 +1,6 @@
 import { testProp, fc } from 'ava-fast-check'
 import * as O from 'fp-ts/Option'
-import { pipe } from 'fp-ts/function'
+import { pipe, constVoid } from 'fp-ts/function'
 import { match, P } from 'ts-pattern'
 
 /**
@@ -45,7 +45,11 @@ testProp(
       (option: O.Option<number>): void =>
         pipe(
           option,
-          O.fold(t.fail, (value) => t.true(assertion(value))),
+          O.fold(
+            () => t.fail(),
+            (value) => t.true(assertion(value)),
+          ),
+          constVoid,
         )
 
     const result = percentageChange(start, end)
