@@ -39,7 +39,7 @@
     "@typescript-eslint/eslint-plugin": "5.28.0",
     "@typescript-eslint/parser": "5.28.0",
     "ava": "4.3.0",
-    "ava-fast-check": "5.0.0",
+    "ava-fast-check": "6.0.0",
     "codecov": "3.8.2",
     "eslint": "8.17.0",
     "eslint-plugin-ava": "13.2.0",
