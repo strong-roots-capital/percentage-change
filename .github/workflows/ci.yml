@@ -9,11 +9,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Configure Node.js
-        uses: actions/setup-node@v3
-        with:
-          cache: npm
-          node-version: 'lts/*'
+      - name: Install Nix
+        uses: cachix/install-nix-action@v16
+
+      - name: Nix develop
+        run: nix develop
 
       - name: Install dependencies
         run: npm ci
@@ -28,11 +28,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Configure Node.js
-        uses: actions/setup-node@v3
-        with:
-          cache: npm
-          node-version: 'lts/*'
+      - name: Install Nix
+        uses: cachix/install-nix-action@v16
+
+      - name: Nix develop
+        run: nix develop
 
       - name: Install dependencies
         run: npm ci
@@ -48,7 +48,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [12.x, 14.x, lts/*]
 
     steps:
       - name: Checkout
