@@ -2,32 +2,37 @@
   "name": "percentage-change",
   "version": "3.0.0",
   "description": "Binary operator of percentage-change",
-  "main": "dist/src/percentage-change.js",
-  "types": "dist/src/percentage-change.d.ts",
-  "scripts": {
-    "build": "tsc",
-    "clean": "rm -rf -- dist",
-    "ava": "ava -v",
-    "ava:fail-fast": "ava -v --fail-fast",
-    "ava:serial": "ava -v -s",
-    "lint": "eslint --ext ts .",
-    "lint:fix": "eslint --ext ts --fix .",
-    "format": "prettier --list-different .",
-    "format:fix": "prettier --write .",
-    "watch:lint": "nodemon -e 'ts js json' -x 'npm run lint || true'",
-    "test": "nyc ava",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+  "keywords": [
+    "percentage",
+    "change",
+    "operator"
+  ],
+  "homepage": "https://github.com/strong-roots-capital/percentage-change",
+  "bugs": {
+    "url": "https://github.com/strong-roots-capital/percentage-change/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/strong-roots-capital/percentage-change.git"
   },
-  "author": "Eric Crosson <eric.s.crosson@utexas.edu> (https://github.com/EricCrosson)",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/strong-roots-capital/percentage-change/issues"
+  "author": "Eric Crosson <eric.s.crosson@utexas.edu> (https://github.com/EricCrosson)",
+  "main": "dist/src/percentage-change.js",
+  "types": "dist/src/percentage-change.d.ts",
+  "files": [
+    "dist/src/"
+  ],
+  "scripts": {
+    "ava": "ava -v",
+    "build": "tsc",
+    "clean": "rm -rf -- dist",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "format": "prettier --list-different .",
+    "format:fix": "prettier --write .",
+    "lint": "eslint --ext ts .",
+    "lint:fix": "eslint --ext ts --fix .",
+    "test": "nyc ava"
   },
-  "homepage": "https://github.com/strong-roots-capital/percentage-change",
   "dependencies": {
     "fp-ts": "^2.8.5"
   },
@@ -52,35 +57,27 @@
     "ts-pattern": "4.0.3",
     "typescript": "4.7.4"
   },
-  "files": [
-    "dist/src/"
-  ],
   "ava": {
+    "extensions": [
+      "ts"
+    ],
     "files": [
       "!dist/**/*.d.ts",
       "test/**/test-*.ts"
-    ],
-    "extensions": [
-      "ts"
     ],
     "require": [
       "ts-node/register"
     ]
   },
   "nyc": {
-    "include": [
-      "src/*.ts"
-    ],
     "extension": [
       ".ts"
+    ],
+    "include": [
+      "src/*.ts"
     ],
     "require": [
       "ts-node/register"
     ]
-  },
-  "keywords": [
-    "percentage",
-    "change",
-    "operator"
-  ]
+  }
 }
