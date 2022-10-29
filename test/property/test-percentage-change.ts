@@ -72,6 +72,18 @@ testProp(
           start: 0,
           end: 0,
         },
+        {
+          start: -0,
+          end: 0,
+        },
+        {
+          start: 0,
+          end: -0,
+        },
+        {
+          start: -0,
+          end: -0,
+        },
         () => assert((n) => 0 === n)(result),
       )
       .otherwise(() =>
@@ -90,6 +102,9 @@ testProp(
       [0, NaN],
       [NaN, 0],
       [0, 0],
+      [0, -0],
+      [-0, 0],
+      [-0, -0],
       [100, 200],
       [200, 100],
     ],
