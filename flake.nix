@@ -44,6 +44,7 @@
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
             nodejs
+            nodePackages.typescript-language-server
           ];
           shellHook = ''
             export PATH="$PWD/node_modules/.bin:$PATH"
