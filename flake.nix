@@ -2,8 +2,13 @@
   description = "od";
 
   inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
-    pre-commit-hooks.url = "github:ericcrosson/pre-commit-hooks.nix/add-eslint";
+    pre-commit-hooks = {
+      url = "github:ericcrosson/pre-commit-hooks.nix/add-eslint";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
