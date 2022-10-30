@@ -4,13 +4,11 @@
 [![NPM Package][]](https://npmjs.org/package/percentage-change)
 [![Build status][]](https://travis-ci.org/strong-roots-capital/percentage-change)
 [![Code Coverage][]](https://codecov.io/gh/strong-roots-capital/percentage-change)
-[![Dependencies][]](https://david-dm.org/strong-roots-capital/percentage-change)
 
 [license]: https://img.shields.io/badge/License-ISC-blue.svg
 [npm package]: https://img.shields.io/npm/v/percentage-change.svg
 [build status]: https://travis-ci.org/strong-roots-capital/percentage-change.svg?branch=master
 [code coverage]: https://codecov.io/gh/strong-roots-capital/percentage-change/branch/master/graph/badge.svg
-[dependencies]: https://david-dm.org/strong-roots-capital/percentage-change/status.svg
 
 > Binary operator of percentage-change
 
