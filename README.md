@@ -1,9 +1,7 @@
 # percentage-change
 
-[![NPM Package][]](https://npmjs.org/package/percentage-change)
 [![Build status][]](https://travis-ci.org/strong-roots-capital/percentage-change)
 
-[npm package]: https://img.shields.io/npm/v/percentage-change.svg
 [build status]: https://travis-ci.org/strong-roots-capital/percentage-change.svg?branch=master
 
 > Binary operator of percentage-change
@@ -67,7 +65,3 @@ percentageChange(0, Infinity); // -Infinity works the same way
 
 [option]: https://gcanti.github.io/fp-ts/modules/Option.ts.html
 [fantasy-land specification]: https://github.com/fantasyland/fantasy-land
-
-## Documentation
-
-See [generated documentation](doc/README.md).
