@@ -29,11 +29,6 @@
               nix-linter.enable = true;
               prettier.enable = true;
             };
-            settings = {
-              eslint = {
-                extensions = "\\.(js|jsx|ts|tsx|json)$";
-              };
-            };
           };
         };
 
