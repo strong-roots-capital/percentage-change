@@ -1,8 +1,8 @@
 # percentage-change
 
-[![Build status][]](https://travis-ci.org/strong-roots-capital/percentage-change)
+[![Build status]](https://github.com/strong-roots-capital/percentage-change/actions/workflows/release.yml)
 
-[build status]: https://travis-ci.org/strong-roots-capital/percentage-change.svg?branch=master
+[build status]: https://github.com/strong-roots-capital/percentage-change/actions/workflows/release.yml/badge.svg?event=push
 
 > Binary operator of percentage-change
 
