@@ -1,11 +1,11 @@
 {
-  description = "od";
+  description = "numbers-ts npm package";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     pre-commit-hooks = {
-      url = "github:ericcrosson/pre-commit-hooks.nix/add-eslint";
+      url = "github:cachix/pre-commit-hooks.nix";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -28,10 +28,6 @@
               alejandra.enable = true;
               nix-linter.enable = true;
               prettier.enable = true;
-              eslint = {
-                enable = true;
-                excludes = ["package-lock.json"];
-              };
             };
             settings = {
               eslint = {
@@ -44,7 +40,6 @@
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
             nodejs
-            nodePackages.typescript-language-server
           ];
           shellHook = ''
             export PATH="$PWD/node_modules/.bin:$PATH"

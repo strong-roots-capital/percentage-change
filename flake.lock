@@ -40,16 +40,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1655072990,
-        "narHash": "sha256-gI144BJN4/NkD1Ez8MUwmjO0RWjHsiHant2CPcDm2Gc=",
-        "owner": "ericcrosson",
+        "lastModified": 1667682049,
+        "narHash": "sha256-SJu+8wV5A9ap6otFi9ZNTSLXQJbvFiA1q2XItrt9gJ8=",
+        "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "b888e5b85b0c91583c2885770639b286f21a7e17",
+        "rev": "cc21c7981d2ab9aa2f00e211ef8c6a0af1d31905",
         "type": "github"
       },
       "original": {
-        "owner": "ericcrosson",
-        "ref": "add-eslint",
+        "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
         "type": "github"
       }
