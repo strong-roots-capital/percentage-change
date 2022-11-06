@@ -28,7 +28,7 @@
     "test": "c8 ava"
   },
   "dependencies": {
-    "fp-ts": "^2.8.5"
+    "fp-ts": "^2.0.0"
   },
   "devDependencies": {
     "ava": "5.0.1",
