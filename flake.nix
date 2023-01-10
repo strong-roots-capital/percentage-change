@@ -1,6 +1,4 @@
 {
-  description = "numbers-ts npm package";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
@@ -25,6 +23,7 @@
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
             src = ./.;
             hooks = {
+              actionlint.enable = true;
               alejandra.enable = true;
               nix-linter.enable = true;
               prettier.enable = true;
