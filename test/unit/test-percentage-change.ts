@@ -1,6 +1,6 @@
 import test, { ExecutionContext } from "ava";
 import * as O from "fp-ts/lib/Option";
-import { pipe } from "fp-ts/lib/pipeable";
+import { pipe } from "fp-ts/lib/function";
 
 /**
  * Unit under test
