@@ -1,8 +1,6 @@
 import { testProp, fc } from "ava-fast-check";
 import * as O from "fp-ts/lib/Option";
-import { pipe } from "fp-ts/lib/pipeable";
-import { constVoid } from "fp-ts/lib/function";
-import { match, P } from "ts-pattern";
+import { constVoid, pipe } from "fp-ts/lib/function";
 
 /**
  * Library under test
@@ -55,41 +53,19 @@ testProp(
 
     const result = percentageChange(start, end);
 
-    match({ start, end })
-      .with({ start: P.when(Number.isNaN) }, () =>
-        O.fold(t.pass, () => t.fail())(result)
-      )
-      .with({ end: P.when(Number.isNaN) }, () =>
-        O.fold(t.pass, () => t.fail())(result)
-      )
-      .with({ start: P.when((n) => n === Infinity || n === -Infinity) }, () =>
-        O.fold(t.pass, () => t.fail())(result)
-      )
-      .with({ end: P.when((n) => n === Infinity || n === -Infinity) }, () =>
-        O.fold(t.pass, () => t.fail())(result)
-      )
-      .with(
-        {
-          start: 0,
-          end: 0,
-        },
-        {
-          start: -0,
-          end: 0,
-        },
-        {
-          start: 0,
-          end: -0,
-        },
-        {
-          start: -0,
-          end: -0,
-        },
-        () => assert((n) => 0 === n)(result)
-      )
-      .otherwise(() =>
-        assert((n) => n === ((end - start) / start) * 100)(result)
-      );
+    if (Number.isNaN(start) || Number.isNaN(end)) {
+      return O.fold(t.pass, () => t.fail())(result);
+    }
+    if (start === Infinity || start === -Infinity) {
+      return O.fold(t.pass, () => t.fail())(result);
+    }
+    if (end === Infinity || end === -Infinity) {
+      return O.fold(t.pass, () => t.fail())(result);
+    }
+    if ((start === 0 || start === -0) && (end === 0 || end === -0)) {
+      return assert((n) => 0 === n)(result);
+    }
+    return assert((n) => n === ((end - start) / start) * 100)(result);
   },
   {
     verbose: true,
