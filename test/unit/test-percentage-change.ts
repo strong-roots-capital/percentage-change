@@ -1,6 +1,8 @@
-import test, { ExecutionContext } from "ava";
-import * as O from "fp-ts/lib/Option";
+import test from "node:test";
+import { strict as assert } from "node:assert";
+
 import { pipe } from "fp-ts/lib/function";
+import * as O from "fp-ts/lib/Option";
 
 /**
  * Unit under test
@@ -8,55 +10,38 @@ import { pipe } from "fp-ts/lib/function";
 
 import { percentageChange } from "../../src/percentage-change";
 
-const shouldCalculate = test.macro({
-  exec(
-    t: ExecutionContext,
-    expected: number,
-    start: number,
-    end: number
-  ): void {
-    pipe(
-      percentageChange(start, end),
-      O.fold(t.fail, (value) => t.is(expected, value))
-    );
-  },
-  title(
-    _providedTitle = "",
-    expected: number,
-    start: number,
-    end: number
-  ): string {
-    return `should calculate ${expected} = ${start} * ${end}`;
-  },
-});
-
-const shouldReturnNone = test.macro({
-  exec(t: ExecutionContext, start: number, end: number): void {
-    O.fold(t.pass, () => t.fail())(percentageChange(start, end));
-  },
-  title(_providedTitle = "", start: number, end: number): string {
-    return `should calculate ${start} * ${end} to be 'none'`;
-  },
-});
+function makeTest(expected: O.Option<number>, start: number, end: number) {
+  const title = pipe(
+    expected,
+    O.fold(
+      () => `should calculate ${start} * ${end} to be none`,
+      (expected) => `should calculate ${expected} = ${start} * ${end}`
+    )
+  );
+  test(title, () => {
+    const actual = percentageChange(start, end);
+    assert.deepEqual(actual, expected);
+  });
+}
 
 /*********************************************************************
  * Test cases
  ********************************************************************/
 
-test(shouldCalculate, 100, 100, 200);
-test(shouldCalculate, -50, 100, 50);
-test(shouldCalculate, 50, 100, 150);
-test(shouldCalculate, -25, 100, 75);
-test(shouldCalculate, Infinity, 0, 100);
-test(shouldCalculate, -100, 150, 0);
-test(shouldCalculate, 0, 0, 0);
+makeTest(O.some(100), 100, 200);
+makeTest(O.some(-50), 100, 50);
+makeTest(O.some(50), 100, 150);
+makeTest(O.some(-25), 100, 75);
+makeTest(O.some(Infinity), 0, 100);
+makeTest(O.some(-100), 150, 0);
+makeTest(O.some(0), 0, 0);
 
-test(shouldReturnNone, Infinity, Infinity);
-test(shouldReturnNone, -Infinity, Infinity);
-test(shouldReturnNone, Infinity, -Infinity);
-test(shouldReturnNone, -Infinity, -Infinity);
-test(shouldReturnNone, Infinity, 0);
-test(shouldReturnNone, NaN, 100);
-test(shouldReturnNone, 100, NaN);
-test(shouldReturnNone, NaN, 0);
-test(shouldReturnNone, 0, NaN);
+makeTest(O.none, Infinity, Infinity);
+makeTest(O.none, -Infinity, Infinity);
+makeTest(O.none, Infinity, -Infinity);
+makeTest(O.none, -Infinity, -Infinity);
+makeTest(O.none, Infinity, 0);
+makeTest(O.none, NaN, 100);
+makeTest(O.none, 100, NaN);
+makeTest(O.none, NaN, 0);
+makeTest(O.none, 0, NaN);
