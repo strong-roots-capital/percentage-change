@@ -17,11 +17,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1687094566,
-        "narHash": "sha256-mVUa7KpGoD59Deeq+66nsaV8AEheJ2gOO0vYlM8/Es4=",
+        "lastModified": 1699732435,
+        "narHash": "sha256-rwZdBjf5IkJIGupYXr+TG5IgPkJI+jOtOatAC5x9onk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e83cd1fb00098aec91ff5af33a8513804ca95eb9",
+        "rev": "703b9db6c5154530264bd7b6b09552596d0e5ede",
         "type": "github"
       },
       "original": {
@@ -32,12 +32,8 @@
     },
     "pre-commit-hooks": {
       "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "flake-utils": ["flake-utils"],
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1667682049,
