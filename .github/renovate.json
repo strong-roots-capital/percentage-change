@@ -6,10 +6,6 @@
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
-    },
-    {
-      "matchPackagePatterns": ["ava", "ava-fast-check", "fast-check"],
-      "groupName": ["ava packages"]
     }
   ],
   "timezone": "America/Chicago",
